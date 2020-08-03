@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 router.get('/materia', guideCtrl.getMateria)
 router.get('/getPractica/:pId',practicaCtrl.getPractica)
-router.post('/postPractica', practicaCtrl.savePractica)
+router.post('/postPractica',practicaCtrl.savePractica)
 router.delete('/deletePractica/:pId', practicaCtrl.deletePractica)
 ////////////Cuestionarios////////////////
 router.post('/cuestionariopost',cuestionarioValidacion.cuestionarioValidacion,cuestionarios.postCuestionario)

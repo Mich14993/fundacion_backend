@@ -6,27 +6,24 @@ const Materia = require('../models/Materia')
 const uploads = require('../app');
 // Controllers definition
 
-
-///////////////materia////////////////////
-let getMateria = async (req, res)=> {
- await Materia.find({}, (err, materia) => {
-  if (err) {
-    return res.status(500).send({
-      message: `Error al realizar la solicitud: ${err}`
-    })
+let getMateria = async(req,res,next)=>{
+  try{
+      return res.status(200).send({
+        materia:await Materia.find({}).exec()
+      })
+      next()
+      
   }
-  else if (!materia) {
-    return res.status(404).send({
-      message: `No encontrado`
-    })
+  catch(e){
+    if(e){
+        return res.status(500).send({
+          message: `Error al realizar la solicitud: ${e}`
+        })
+        next()
+        
+    }
   }
-  else{
-    res.status(200).send({ materia })  
-  }
-  
-})
 }
-
 module.exports = {
   getMateria
   
